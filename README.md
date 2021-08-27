@@ -1,1 +1,1 @@
-jenkins-shared-libriary
+# github-api-global-lib
