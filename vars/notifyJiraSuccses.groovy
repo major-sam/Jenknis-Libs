@@ -1,8 +1,8 @@
-def call(Map config [:]){
+def call(Map config = [:]){
         if (config.release){
 	    nugetVersion = (env.build_number)
         }else{
-	    nugetVersion = (env.build_number + "-" +branch).replace("/","-")
+	    nugetVersion = (env.build_number + "-" +config.branch).replace("/","-")
 	}
 	jiraComment issueKey: config.issueKey ,body: """(/)
 h1. {color:#00875A}BUILD ${config.buildName} SUCCSESFULL{color}
