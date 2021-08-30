@@ -8,7 +8,7 @@ def call(Map config = [:]) {
        }
        \$endpointUri = '$config.BRANCH_LIST_URL'
        \$json = Invoke-RestMethod -Method get -Uri \$endpointUri -Headers \$requestHeaders -ContentType "application/json"
-       \$json.values.displayId | Sort-Object | set-content -Encoding "utf8" branch.txt
+       \$json.values.displayId | Sort-Object | set-content -Encoding "utf8" $config.txtFile
      """)
      env.DEFAULT_BRANCH = powershell ( encoding: 'UTF8', returnStdout: 'true', script:"""
        \$base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "$username","$password")))
