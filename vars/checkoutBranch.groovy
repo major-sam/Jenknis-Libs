@@ -1,5 +1,5 @@
 def call(Map config = [:]){
-  echo ("Это костыльный шаг - вложенный чекаут для выбранной ранее ветки.")
+  echo ("Это костыльный шаг - вложенный чекаут для выбранной ранее ветки. Следует пулить всю ветку с Jenkinsfile  и параметрзовать сборку от типа ветки")
   echo "You choose ${config.BRANCH} branch, checkout"
   BRANCH = config.BRANCH.trim().toString().replaceAll("\\s","")
   env.DEFAULT_BRANCH = env.DEFAULT_BRANCH.trim().toString().replaceAll("\\s","")
