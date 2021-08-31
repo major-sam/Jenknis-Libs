@@ -23,7 +23,7 @@ def call(Map config = [:]){
 	  <frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
 	  <frameworkAssembly assemblyName="System.Net" targetFramework="netcoreapp3.1" />
 	</frameworkAssemblies>
-	<tags>${config.branch} ${commitHash}</tags>
+	<tags>${config.branch} ${commitHash} ${config.issue}</tags>
   </metadata>
 </package>""")
 		powershell ( encoding:"UTF8", script:"nuget pack")
