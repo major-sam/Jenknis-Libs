@@ -1,4 +1,11 @@
 def call(Map config = [:]){				
+// INTENDED FOR TESTS ONLY
+// INTENDED FOR TESTS ONLY
+	taglist = ['NWP-147','NWP-145','NWP-133','NWP-108','NWP-144','NWP-143']
+	Collections.shuffle(taglist)
+	testTag = taglist.first() + " " + taglist.last()
+// INTENDED FOR TESTS ONLY
+// INTENDED FOR TESTS ONLY
         if (config.release){
 	    nugetVersion = (env.build_number)
         }else{
@@ -23,7 +30,7 @@ def call(Map config = [:]){
 	  <frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
 	  <frameworkAssembly assemblyName="System.Net" targetFramework="netcoreapp3.1" />
 	</frameworkAssemblies>
-	<tags>${config.branch} ${commitHash} ${config.issue}</tags>
+	<tags>${config.branch} ${commitHash} ${config.issue} ${testTag}</tags>
   </metadata>
 </package>""")
 		powershell ( encoding:"UTF8", script:"nuget pack")

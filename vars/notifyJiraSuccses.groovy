@@ -12,5 +12,4 @@ h2. Jenkins build ${env.BUILD_NUMBER}
 h2. Nuget artifact
 [link |${config.nugetRepo}packages/${config.buildName}/1.0.${nugetVersion}]
 """  
-        cleanWs ()
 }
