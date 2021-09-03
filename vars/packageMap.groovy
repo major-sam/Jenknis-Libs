@@ -1,6 +1,6 @@
 def packageMap = {
    KRM:{
-    name: "KRM SITE UNIRU"
+    name: "UNIRU"
     type: "IISSite"
     db: {
       dbName:"UniRu"
@@ -16,9 +16,10 @@ def packageMap = {
           port: 4443
           cert: "bb-webapps.com.cer"
           }
-      envScripts: "folderPath"
       ]
+      envScripts: "folderPath"
     }
+    links: []
    }
    KRM:{
     name: "KRM SITE UNIRU"
@@ -37,9 +38,10 @@ def packageMap = {
           port: 4443
           cert: "bb-webapps.com.cer"
           }
-      envScripts: "folderPath"
       ]
+      envScripts: "folderPath"
     }
+    links: []
    }
    Kernel:{
     name: "Kernel"
@@ -57,6 +59,7 @@ def packageMap = {
       path: "\\"
       envScripts: "folderPath"
     }
+    links: []
    }
    KernelWeb:{
     name: "KernelWeb"
@@ -66,6 +69,7 @@ def packageMap = {
       path: "\\"
       envScripts: "folderPath"
     }
+    links: []
    }
 }
 call(name){
