@@ -8,19 +8,7 @@ $MssqlVersion = "MSSQL15"
 $release_bak_folder = "\\dev-comp49\share\DBs\"
 $MSSQLDataPath = "C:\Program Files\Microsoft SQL Server\$MssqlVersion.MSSQLSERVER\MSSQL\DATA\"
 $queryTimeout = 720
-$username ="GKBALTBET\TestKernel_svc"
-$pass = "GldycLIFKM2018"
-$IISPools = @( 
-    @{
-        SiteName = 'ClientWorkSpace'
-        DomainAuth =  @{
-            userName="$username";password="$pass";identitytype=3
-            }
-        Bindings= @(
-                @{protocol='http';bindingInformation="*:8080:"}
-            )
-    }
-)  
+
 
 $dbs = @(
 	@{
@@ -73,23 +61,5 @@ RestoreSqlDb($dbs)
 
 Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg" 
 
-### create sites
-Import-Module  -Force WebAdministration
-$RuntimeVersion ='v4.0'
-foreach($site in $IISPools ){
-    $name =  $site.SiteName
-    New-Item –Path IIS:\AppPools\$name -force
-    Set-ItemProperty –Path IIS:\AppPools\$name -Name managedRuntimeVersion -Value 'v4.0'
-    Set-ItemProperty –Path IIS:\AppPools\$name -Name startMode -Value 'AlwaysRunning'
-    if ($site.DomainAuth){
-       Set-ItemProperty IIS:\AppPools\$name -name processModel -value $site.DomainAuth
-    }
-    Start-WebAppPool -Name $name
-    New-Website -Name "$name" -ApplicationPool "$name" -PhysicalPath $targetDir -Force
-    $IISSite = "IIS:\Sites\$name"
-    Set-ItemProperty $IISSite -name  Bindings -value $site.Bindings
-   # $webServerCert = get-item Cert:\LocalMachine\My\660a619045cf9a3117671c9a6804e17cbf9587fe
-    #$bind = Get-WebBinding -Name $name -Protocol https
-   # $bind.AddSslCertificate($webServerCert.GetCertHashString(), "my")
-    Start-WebSite -Name "$name"
-}
+
+### IIS PART MOVED TO ISSconfig.ps1
