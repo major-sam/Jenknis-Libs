@@ -1,3 +1,7 @@
+#cleanup Nuget cache
+nuget locals all -clear
+
+
 # cleanup inetpub and IIS
 Import-Module  -Force WebAdministration
 Remove-Website -Name *

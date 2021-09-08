@@ -1,6 +1,6 @@
 # vars
 $targetDir = 'C:\KernelWeb'
-$sourceDir = "C:\temp\KernelWeb"
+$sourceDir = "$env:nugettemp\KernelWeb"
 $CurrentIpAddr =(Get-NetIPAddress -AddressFamily IPV4 -InterfaceAlias Ethernet).IPAddress.trim()
 $transformFiles = @("$targetDir\settings.OctopusTestVM.xml","$targetDir\App.OctopusTestVM.config")
 
@@ -113,7 +113,8 @@ function XmlDocTransform($xml, $xdt){
 
 ### copy files
 
-Copy-Item -Path "$sourceDir\"  -Destination $targetDir -Recurse -Exclude "*.nupkg" 
+write-host "Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg" -verbouse"
+Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg" 
 
 
 ### set vm related values for transformation files

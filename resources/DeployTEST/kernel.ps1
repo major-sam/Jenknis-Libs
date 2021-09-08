@@ -1,6 +1,6 @@
 #vars
 $targetDir = 'C:\Kernel'
-$sourceDir = "C:\temp\Kernel"
+$sourceDir = "$env:nugettemp\Kernel"
 $CurrentIpAddr =(Get-NetIPAddress -AddressFamily IPV4 -InterfaceAlias Ethernet).IPAddress.trim()
 $pathtojson = "$targetDir\appsettings.json "
 $jsonDepth = 4
@@ -120,8 +120,8 @@ function XmlDocTransform($xml, $xdt){
 
 
 ### copy files
-
-Copy-Item -Path "$sourceDir\"  -Destination $targetDir -Recurse -Exclude "*.nupkg" 
+write-host "Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg 
+Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg" 
 
 
 ### set vm related values for transformation files

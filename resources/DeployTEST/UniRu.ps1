@@ -1,7 +1,7 @@
 ###vars
 $WebSiteName = "UniRu"
 $targetDir = "C:\inetpub\$WebSiteName"
-$sourceDir = "C:\temp\$WebSiteName"
+$sourceDir = "$env:nugettemp\$WebSiteName"
 
 ## TODO!!!
 $file = Get-item -Path "C:\Users\vrebyachih\Desktop\UniRu.sql"
@@ -64,17 +64,18 @@ function RestoreSqlDb($db_params) {
 }
 RestoreSqlDb($dbs)
 
+### copy files
+
+write-host "Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg" "
+Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg" 
+
+
 (Get-Content -Encoding UTF8 -LiteralPath $file.Fullname)|Foreach-Object {
     $_ -replace $oldIp,  $IPAddress `
         -replace $oldHostname, $env:COMPUTERNAME`
     } | Set-Content -Encoding UTF8 -LiteralPath $file.Fullname
-Invoke-Sqlcmd -verbose -ServerInstance $env:COMPUTERNAME -Database "master" -InputFile $file.Fullname -ErrorAction Stop
+Invoke-Sqlcmd -verbose -ServerInstance $env:COMPUTERNAME -Database $dbs[0].DbName -InputFile $file.Fullname -ErrorAction Stop
 Set-Location C:\
-### copy files
-
-Copy-Item -Path "$sourceDir\"  -Destination $targetDir -Recurse -Exclude "*.nupkg" 
-
-
 ### IIS PART MOVED TO ISSconfig.ps1
 
 

@@ -1,7 +1,11 @@
 ## vars
-$sourceDir = 'C:\temp\MessageService'
+$sourceDir = "${env:nugettemp}\MessageService"
 $targetDir  = 'C:\Services'
+#TODO FIX
 $release_bak_folder = 'C:\temp\'
+$MssqlVersion = "MSSQL15"
+$MSSQLDataPath = "C:\Program Files\Microsoft SQL Server\$MssqlVersion.MSSQLSERVER\MSSQL\DATA\"
+
 
 $dbs = @(
 	@{
@@ -14,7 +18,7 @@ $dbs = @(
 			}
 			@{
 				SourceName = "MessageService_log"
-				FileName = "MessageService.ldf"
+				FileName = "MessageService_log.ldf"
 			}
         )
 	}
@@ -53,4 +57,5 @@ function RestoreSqlDb($db_params) {
 RestoreSqlDb($dbs)
 
 ### copy files
-Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude *.nupkg  -Force
+write-host "Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg
+Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg"

@@ -1,4 +1,4 @@
-$sourceDir = 'C:\temp\BALTBETCOM-RU'
+$sourceDir = "$env:nugettemp\BALTBETCOM-RU"
 $targetDir  = 'C:\inetpub\baltbetcom'
 $ProgressPreference = 'SilentlyContinue'
 $webConfig = "$sourceDir\Web.config"
@@ -12,9 +12,10 @@ $queryTimeout = 720
 
 ### copy files
 
-Copy-Item -Path "$sourceDir\"  -Destination $targetDir -Recurse -Exclude "*.nupkg" 
+write-host "Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg
+Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg" 
 
-}
+
 ###
 #XML values replace
 ####

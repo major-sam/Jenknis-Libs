@@ -1,7 +1,7 @@
 ###vars
 $WebSiteName = "ClientWorkSpace"
 $targetDir = "C:\inetpub\$WebSiteName"
-$sourceDir = "C:\temp\krm"
+$sourceDir = "$env:nugettemp\krm"
 $ProgressPreference = 'SilentlyContinue'
 $MssqlVersion = "MSSQL15"
 ### !!! TRAILING SLASHES !!!
@@ -14,7 +14,7 @@ $dbs = @(
 	@{
 		DbName = "CWS_ScreenSaversTempDB"
 		BackupFile = "CWS_ScreenSaversTempDB.bak"
-        RelocateFiles = @(
+		RelocateFiles = @(
 			@{
 				SourceName = "CWS_ScreenSaversTempDB"
 				FileName = "CWS_ScreenSaversTempDB.mdf"
@@ -46,7 +46,7 @@ function RestoreSqlDb($db_params) {
 			foreach ($dbFile in $db.RelocateFiles) {
 				$RelocateFile += New-Object Microsoft.SqlServer.Management.Smo.RelocateFile($dbFile.SourceName, ("{0}{1}" -f $MSSQLDataPath, $dbFile.FileName))
 			}
-            write-host -ForegroundColor DarkGreen $dbBackupFile
+			write-host -ForegroundColor DarkGreen $dbBackupFile
 			Restore-SqlDatabase -Verbose -ServerInstance $env:COMPUTERNAME -Database $db.DbName -BackupFile  $dbBackupFile -RelocateFile $RelocateFile -ReplaceDatabase
 			Push-Location C:\Windows
 		}else{
@@ -59,6 +59,7 @@ RestoreSqlDb($dbs)
 
 ### copy files
 
+write-host "Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg" -verbouse"
 Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg" 
 
 

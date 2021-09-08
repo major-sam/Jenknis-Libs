@@ -1,11 +1,12 @@
 ###vars
 $WebSiteName = "UniruWebApi"
 $targetDir = "C:\inetpub\$WebSiteName"
-$sourceDir = "C:\temp\$WebSiteName"
-$webConfig = "$sourceDir\Web.config"
+$sourceDir = "$env:nugettemp\$WebSiteName"
+$webConfig = "$targetDir\Web.config"
 ### copy files
 
-Copy-Item -Path "$sourceDir\"  -Destination $targetDir -Recurse -Exclude "*.nupkg" 
+write-host "Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg
+Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg" 
 
 ### IIS PART MOVED TO ISSconfig.ps1
 
