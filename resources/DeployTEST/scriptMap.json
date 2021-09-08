@@ -1,0 +1,3 @@
+{
+    "scripts": ["baltbetcom.ps1", "ClientWorkSpace.ps1", "kernel.ps1", "kernel-kernelWebDB.ps1", "kernelWeb.ps1", "MessageService.ps1", "UniRu.ps1", "UniruWebApi.ps1"]
+}

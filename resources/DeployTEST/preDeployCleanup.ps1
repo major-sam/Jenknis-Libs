@@ -21,7 +21,7 @@ invoke-sqlcmd -ServerInstance $sqlInstanceName -Query $rQuery
 #### service stop & remove
 Stop-Service BaltBet.MessageService.Host
 #### proc kill   
-$procs = @(BaltBet.MessageService.Host)
+$procs = @("BaltBet.MessageService.Host")
 foreach($proc in $procs){
 	$pr = Get-Process $proc -ErrorAction SilentlyContinue
 	if ($pr) {
@@ -44,7 +44,7 @@ Remove-Item -Path C:\Services\* -Force -Recurse
 Stop-Service kernel, kernelweb
 #### proc kill   
 
-$procs = @(Kernel, KernelWeb)
+$procs = @("Kernel", "KernelWeb")
 foreach($proc in $procs){
 	$pr = Get-Process $proc -ErrorAction SilentlyContinue
 	if ($pr) {
