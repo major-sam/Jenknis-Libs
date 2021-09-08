@@ -1,4 +1,4 @@
-﻿###vars
+###vars
 $WebSiteName = "ClientWorkSpace"
 $targetDir = "C:\inetpub\$WebSiteName"
 $sourceDir = "C:\temp\krm"

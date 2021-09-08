@@ -1,4 +1,4 @@
-﻿#vars
+#vars
 $ProgressPreference = 'SilentlyContinue'
 
 $MssqlVersion = "MSSQL15"

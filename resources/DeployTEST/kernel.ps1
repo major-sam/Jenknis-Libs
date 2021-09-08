@@ -1,4 +1,4 @@
-﻿#vars
+#vars
 $targetDir = 'C:\Kernel'
 $sourceDir = "C:\temp\Kernel"
 $CurrentIpAddr =(Get-NetIPAddress -AddressFamily IPV4 -InterfaceAlias Ethernet).IPAddress.trim()

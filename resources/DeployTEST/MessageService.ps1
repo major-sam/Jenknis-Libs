@@ -1,4 +1,4 @@
-﻿## vars
+## vars
 $sourceDir = 'C:\temp\MessageService'
 $targetDir  = 'C:\Services'
 $release_bak_folder = 'C:\temp\'

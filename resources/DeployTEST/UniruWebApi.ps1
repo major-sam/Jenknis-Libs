@@ -1,4 +1,4 @@
-﻿###vars
+###vars
 $WebSiteName = "UniruWebApi"
 $targetDir = "C:\inetpub\$WebSiteName"
 $sourceDir = "C:\temp\$WebSiteName"

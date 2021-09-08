@@ -1,4 +1,4 @@
-﻿$sourceDir = 'C:\temp\BALTBETCOM-RU'
+$sourceDir = 'C:\temp\BALTBETCOM-RU'
 $targetDir  = 'C:\inetpub\baltbetcom'
 $ProgressPreference = 'SilentlyContinue'
 $CurrentIpAddr =(Get-NetIPAddress -AddressFamily IPV4 -InterfaceAlias Ethernet).IPAddress.trim()

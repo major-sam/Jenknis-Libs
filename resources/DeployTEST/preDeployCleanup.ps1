@@ -21,7 +21,20 @@ invoke-sqlcmd -ServerInstance $sqlInstanceName -Query $rQuery
 #### service stop & remove
 Stop-Service BaltBet.MessageService.Host
 #### proc kill   
-Stop-Process -Name BaltBet.MessageService.Host -Force 
+$procs = @(BaltBet.MessageService.Host)
+foreach($proc in $procs){
+	$pr = Get-Process $proc -ErrorAction SilentlyContinue
+	if ($pr) {
+	  # try gracefully first
+	  $pr.CloseMainWindow()
+	  # kill after five seconds
+	  Sleep 5
+	  if (!$pr.HasExited) {
+		$pr | Stop-Process -Force
+	  }
+	}
+	Remove-Variable pr
+}
 #### cleanup folders
 sleep 10
 Remove-Item -Path C:\Services\* -Force -Recurse
@@ -30,7 +43,21 @@ Remove-Item -Path C:\Services\* -Force -Recurse
 #### service stop & remove
 Stop-Service kernel, kernelweb
 #### proc kill   
-Stop-Process -Name Kernel, KernelWeb -Force
+
+$procs = @(Kernel, KernelWeb)
+foreach($proc in $procs){
+	$pr = Get-Process $proc -ErrorAction SilentlyContinue
+	if ($pr) {
+	  # try gracefully first
+	  $pr.CloseMainWindow()
+	  # kill after five seconds
+	  Sleep 5
+	  if (!$pr.HasExited) {
+		$pr | Stop-Process -Force
+	  }
+	}
+	Remove-Variable pr
+}
 
 sleep 10
 #### cleanup folders
