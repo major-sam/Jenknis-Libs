@@ -1,4 +1,4 @@
-﻿## cleanup inetpub & IIS
+﻿# cleanup inetpub and IIS
 Import-Module  -Force WebAdministration
 Remove-Website -Name *
 Remove-WebAppPool -name *
