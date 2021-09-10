@@ -1,13 +1,38 @@
 {
     "ClientWorkSpace": {
+        "name": "ClientWorkSpace",
+        "confluencePageIde":"12345"
+        "description": "SOme Description",
+        "type": "IISSite",
         "db": {
             "backupFilePath": "fullFile.bak",
             "dbFiles": false,
             "dbName": "ClientWorkSpace",
             "initScripts": "folderPath"
         },
-        "links": [],
-        "name": "ClientWorkSpace",
+        "links": {
+            "Kernel": {
+                "port":123, 
+                "proto": "TCP",
+                "dependency": "Hard",
+                "type": "BBService",
+                "envVar":"CWSKernelLinkEnvVar"
+            },
+            "KernelWeb": {
+                "port": 122,
+                "proto": "TCP",
+                "dependency": "Weak",
+                "type": "BBService",
+                "envVar":"CWSKernelWebLinkEnvVar"
+            },
+            "Uniru": {
+                "port": 1231,
+                "proto": "TCP",
+                "dependency": "Weak",
+                "type": "BBService",
+                "envVar": "CWSKernelWebLinkEnvVar"
+            }            
+        },
         "params": {
             "bindings": [
                 {
@@ -18,10 +43,13 @@
             ],
             "envScripts": "folderPath",
             "siteName": "ClientWorkSpace"
-        },
-        "type": "IISSite"
+        }
     },
     "Kernel": {
+        "name": "Kernel",
+        "confluencePageIde":"12345"
+        "description": "SOme Description",
+        "type": "Service",
         "db": {
             "backupFilePath": "fullFile.bak",
             "dbFiles": {
@@ -36,47 +64,112 @@
             "dbName": "BaltBetM",
             "initScripts": "folderPath"
         },
-        "links": [],
-        "name": "Kernel",
+        "links": {
+            "KernelWeb": {
+                "port": 122,
+                "proto": "TCP",
+                "type": "BBService",
+                "dependency": "Weak",
+                "envVar":"KernelKernelWebLinkEnvVar"
+            }            
+        },
         "params": {
             "envScripts": "folderPath",
-            "path": "c:\\"
-        },
-        "type": "Service"
+            "Deploypath": "c:\\"
+        }
     },
     "KernelWeb": {
-        "db": false,
-        "links": [],
         "name": "KernelWeb",
+        "confluencePageIde":"12345"
+        "description": "SOme Description",
+        "type": "Service",
+        "db": false,
         "params": {
-            "envScripts": "folderPath",
-            "path": "c:\\"
+        "links": {
+            "KernelWeb": {
+                "port": 122,
+                "proto": "TCP",
+                "type": "BBService",
+                "dependency": "Weak",
+                "envVar":"KernelWebKernelLinkEnvVar"
+            }            
         },
-        "type": "Service"
+            "envScripts": "folderPath",
+            "Deploypath": "c:\\"
+        }
     },
     "MessageService": {
+        "name": "MessageService",
+        "confluencePageIde":"12345"
+        "description": "SOme Description",
+        "type": "Service",
         "db": {
             "backupFilePath": "fullFile.bak",
             "dbFiles": false,
             "name": "MessageService"
         },
-        "links": [],
-        "name": "MessageService",
+        "links": {
+            "Kernel": {
+                "port":123, 
+                "proto": "TCP",
+                "type": "BBService",
+                "dependency": "Hard",
+                "envVar":"CWSKernelLinkEnvVar"
+            },
+            "KernelWeb": {
+                "port": 122,
+                "proto": "TCP",
+                "type": "BBService",
+                "dependency": "Weak",
+                "envVar":"CWSKernelWebLinkEnvVar"
+            },
+            "Uniru": {
+                "port": 1231,
+                "proto": "TCP",
+                "dependency": "Weak",
+                "type": "BBService",
+                "envVar": "CWSKernelWebLinkEnvVar"
+            }            
+        },
         "params": {
             "envScripts": "folderPath",
-            "path": "c:\\Services"
-        },
-        "type": "Service"
+            "Deploypath": "c:\Services"
+        }
     },
     "UniRu": {
+        "name": "UNIRU",
+        "type": "IISSite",
+        "confluencePageIde":"12345"
+        "description": "SOme Description",
         "db": {
             "backupFilePath": "fullFile.bak",
             "dbFiles": false,
             "dbName": "UniRu",
             "initScripts": "folderPath"
         },
-        "links": [],
-        "name": "UNIRU",
+        "links": {
+            "Kernel": {
+                "port":123, 
+                "proto": "TCP",
+                "dependency": "Hard",
+                "type": "BBService",
+                "envVar":"CWSKernelLinkEnvVar"
+            },
+            "KernelWeb": {
+                "port": 122,
+                "proto": "TCP",
+                "dependency": "Hard",
+                "type": "BBService",
+                "envVar":"CWSKernelWebLinkEnvVar"
+            },
+            "MessageService": {
+                "port": 1231,
+                "proto": "TCP",
+                "dependency": "Hard",
+                "type": "BBService",
+                "envVar": "CWSKernelWebLinkEnvVar"
+            }            
+        },
         "params": {
             "bindings": [
                 {
@@ -87,7 +180,6 @@
             ],
             "envScripts": "folderPath",
             "siteName": "UniRu"
-        },
-        "type": "IISSite"
+        }
     }
 }
