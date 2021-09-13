@@ -1,9 +1,13 @@
 {
     "ClientWorkSpace": {
         "name": "ClientWorkSpace",
-        "confluencePageIde":"12345"
+        "confluencePageId": "80059255",
         "description": "SOme Description",
-        "type": "IISSite",
+        "repo": "BITBUCKET REPOSITORY URL",
+        "manPage": "MAN PAGE URL",
+        "type": "IISSite",		
+		"rabbit" : "Local rabbit",
+		"redis" : "Local redis",
         "db": {
             "backupFilePath": "fullFile.bak",
             "dbFiles": false,
@@ -12,43 +16,45 @@
         },
         "links": {
             "Kernel": {
-                "port":123, 
+                "port": 8123,
                 "proto": "TCP",
                 "dependency": "Hard",
                 "type": "BBService",
-                "envVar":"CWSKernelLinkEnvVar"
+                "envVar": "CWSKernelLinkEnvVar"
             },
             "KernelWeb": {
-                "port": 122,
-                "proto": "TCP",
-                "dependency": "Weak",
-                "type": "BBService",
-                "envVar":"CWSKernelWebLinkEnvVar"
-            },
-            "Uniru": {
-                "port": 1231,
+                "port": 4122,
                 "proto": "TCP",
                 "dependency": "Weak",
                 "type": "BBService",
                 "envVar": "CWSKernelWebLinkEnvVar"
-            }            
+            },
+            "Uniru": {
+                "port": 55523,
+                "proto": "TCP",
+                "dependency": "Weak",
+                "type": "BBService",
+                "envVar": "CWSKernelWebLinkEnvVar"
+            }
         },
         "params": {
-            "bindings": [
-                {
+            "bindings": [{
                     "cert": "bb-webapps.com.cer",
                     "port": 8080,
                     "proto": "https"
                 }
             ],
-            "envScripts": "folderPath",
-            "siteName": "ClientWorkSpace"
+            "postDeployScripts": "folderPath",
+            "siteName": "ClientWorkSpace",
+            "Deploypath": "inetpub"
         }
     },
     "Kernel": {
         "name": "Kernel",
-        "confluencePageIde":"12345"
+        "confluencePageId": "80059244",
         "description": "SOme Description",
+        "repo": "BITBUCKET REPOSITORY URL",
+        "manPage": "MAN PAGE URL",
         "type": "Service",
         "db": {
             "backupFilePath": "fullFile.bak",
@@ -64,64 +70,71 @@
             "dbName": "BaltBetM",
             "initScripts": "folderPath"
         },
+		"rabbit" : "Local rabbit",
+		"redis" : "Local redis",
         "links": {
             "KernelWeb": {
                 "port": 122,
                 "proto": "TCP",
                 "type": "BBService",
-                "dependency": "Weak",
-                "envVar":"KernelKernelWebLinkEnvVar"
-            }            
+                "dependency": "Critical",
+                "envVar": "KernelKernelWebLinkEnvVar"
+            }
         },
         "params": {
-            "envScripts": "folderPath",
+            "postDeployScripts": "folderPath",
             "Deploypath": "c:\\"
         }
     },
     "KernelWeb": {
         "name": "KernelWeb",
-        "confluencePageIde":"12345"
+        "confluencePageId": "80059246",
         "description": "SOme Description",
         "type": "Service",
+        "repo": "BITBUCKET REPOSITORY URL",
+        "manPage": "MAN PAGE URL",
         "db": false,
-        "params": {
         "links": {
             "KernelWeb": {
                 "port": 122,
                 "proto": "TCP",
                 "type": "BBService",
                 "dependency": "Weak",
-                "envVar":"KernelWebKernelLinkEnvVar"
-            }            
+                "envVar": "KernelWebKernelLinkEnvVar"
+            }
         },
-            "envScripts": "folderPath",
+        "params": {
+            "postDeployScripts": "folderPath",
             "Deploypath": "c:\\"
         }
     },
     "MessageService": {
         "name": "MessageService",
-        "confluencePageIde":"12345"
+        "confluencePageId": "80059248",
         "description": "SOme Description",
+        "manPage": "MAN PAGE URL",
         "type": "Service",
+        "repo": "BITBUCKET REPOSITORY URL",
         "db": {
             "backupFilePath": "fullFile.bak",
             "dbFiles": false,
-            "name": "MessageService"
+            "dbName": "MessageService",
+            "initScripts": "folderPath"
         },
         "links": {
             "Kernel": {
-                "port":123, 
+                "port": 123,
                 "proto": "TCP",
                 "type": "BBService",
                 "dependency": "Hard",
-                "envVar":"CWSKernelLinkEnvVar"
+                "envVar": "CWSKernelLinkEnvVar"
             },
             "KernelWeb": {
                 "port": 122,
                 "proto": "TCP",
                 "type": "BBService",
                 "dependency": "Weak",
-                "envVar":"CWSKernelWebLinkEnvVar"
+                "envVar": "CWSKernelWebLinkEnvVar"
             },
             "Uniru": {
                 "port": 1231,
@@ -129,18 +142,22 @@
                 "dependency": "Weak",
                 "type": "BBService",
                 "envVar": "CWSKernelWebLinkEnvVar"
-            }            
+            }
         },
         "params": {
-            "envScripts": "folderPath",
-            "Deploypath": "c:\Services"
+            "postDeployScripts": "folderPath",
+            "Deploypath": "c:\\Services"
         }
     },
     "UniRu": {
-        "name": "UNIRU",
+        "name": "UniRu",
         "type": "IISSite",
-        "confluencePageIde":"12345"
+        "confluencePageId": "80059251",
         "description": "SOme Description",
+        "manPage": "MAN PAGE URL",
+        "repo": "BITBUCKET REPOSITORY URL",
+		"rabbit" : "Local rabbit",
+		"redis" : "Local redis",
         "db": {
             "backupFilePath": "fullFile.bak",
             "dbFiles": false,
@@ -149,18 +166,18 @@
         },
         "links": {
             "Kernel": {
-                "port":123, 
+                "port": 123,
                 "proto": "TCP",
                 "dependency": "Hard",
                 "type": "BBService",
-                "envVar":"CWSKernelLinkEnvVar"
+                "envVar": "CWSKernelLinkEnvVar"
             },
             "KernelWeb": {
                 "port": 122,
                 "proto": "TCP",
                 "dependency": "Hard",
                 "type": "BBService",
-                "envVar":"CWSKernelWebLinkEnvVar"
+                "envVar": "CWSKernelWebLinkEnvVar"
             },
             "MessageService": {
                 "port": 1231,
@@ -168,18 +185,18 @@
                 "dependency": "Hard",
                 "type": "BBService",
                 "envVar": "CWSKernelWebLinkEnvVar"
-            }            
+            }
         },
         "params": {
-            "bindings": [
-                {
+            "bindings": [{
                     "cert": "bb-webapps.com.cer",
                     "port": 4443,
                     "proto": "https"
                 }
             ],
-            "envScripts": "folderPath",
-            "siteName": "UniRu"
+            "postDeployScripts": "folderPath",
+            "siteName": "UniRu",
+            "Deploypath": "inetpub"
         }
     }
 }
