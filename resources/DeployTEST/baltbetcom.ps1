@@ -1,7 +1,7 @@
 $sourceDir = "$env:nugettemp\BALTBETCOM-RU"
 $targetDir  = 'C:\inetpub\baltbetcom'
 $ProgressPreference = 'SilentlyContinue'
-$webConfig = "$sourceDir\Web.config"
+$webConfig = "$targetDir\Web.config"
 $CurrentIpAddr =(Get-NetIPAddress -AddressFamily IPV4 -InterfaceAlias Ethernet).IPAddress.trim()
 $MssqlVersion = "MSSQL15"
 ### !!! TRAILING SLASHES !!!
