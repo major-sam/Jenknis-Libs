@@ -18,6 +18,12 @@ $rQuery =" EXEC sp_MSforeachdb
     EXEC (''ALTER DATABASE [?] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
     DROP DATABASE [?]'' )
   END'
+  USE [msdb]
+  GO
+  DECLARE @Delete_Date [datetime]
+  SET @Delete_Date = GETDATE()
+  exec sp_delete_backuphistory @Delete_Date 
+  GO
   "
 invoke-sqlcmd -ServerInstance $sqlInstanceName -Query $rQuery
 
