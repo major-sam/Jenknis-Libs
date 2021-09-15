@@ -5,7 +5,7 @@ $sourceDir = "$env:nugettemp\$WebSiteName"
 
 ## TODO!!!
 $sourceFile = Get-item -Path "\\dev-comp49\share\UniRu.sql"
-$file = Get-item -Path ".\UniRu.sql"
+$file = ".\UniRu.sql"
 $oldIp = '172.16.1.217'
 $oldHostname = 'VM1APKTEST-P1'
 $IPAddress = (Get-NetIPAddress -InterfaceAlias Ethernet -AddressFamily IPv4).IPAddress.trim()
@@ -76,7 +76,7 @@ Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg
 (Get-Content -Encoding UTF8 -LiteralPath $sourceFile.Fullname)|Foreach-Object {
     $_ -replace $oldIp,  $IPAddress `
         -replace $oldHostname, $env:COMPUTERNAME`
-    } | Set-Content -Encoding UTF8 -LiteralPath $file.Fullname
+    } | Set-Content -Encoding UTF8 $file
 Invoke-Sqlcmd -verbose -ServerInstance $env:COMPUTERNAME -Database $dbs[0].DbName -InputFile $file.Fullname -ErrorAction Stop
 Set-Location C:\
 ### IIS PART MOVED TO ISSconfig.ps1

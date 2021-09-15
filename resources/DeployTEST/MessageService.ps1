@@ -1,7 +1,7 @@
 ## vars
 $sourceDir = "${env:nugettemp}\MessageService"
 $targetDir  = 'C:\Services'
-$release_bak_folder = '\\dev-comp49\share\'
+$release_bak_folder = '\\dev-comp49\share\DBs'
 
 
 [reflection.assembly]::LoadWithPartialName("Microsoft.SqlServer.Smo") | out-null

@@ -3,7 +3,9 @@ $WebSiteName = "ClientWorkSpace"
 $targetDir = "C:\inetpub\$WebSiteName"
 $sourceDir = "$env:nugettemp\krm"
 $ProgressPreference = 'SilentlyContinue'
-$MssqlVersion = "MSSQL15"
+[reflection.assembly]::LoadWithPartialName("Microsoft.SqlServer.Smo") | out-null
+$srv = New-Object "Microsoft.SqlServer.Management.Smo.Server" "."
+$MssqlVersion = "MSSQL" + $srv.Version.major
 ### !!! TRAILING SLASHES !!!
 $release_bak_folder = "\\dev-comp49\share\DBs\"
 $MSSQLDataPath = "C:\Program Files\Microsoft SQL Server\$MssqlVersion.MSSQLSERVER\MSSQL\DATA\"
