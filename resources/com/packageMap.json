@@ -16,15 +16,15 @@
         },
         "links": {
             "Kernel": {
-                "port": 8123,
+                "port": 333333,
                 "proto": "TCP",
                 "dependency": "Hard",
                 "type": "BBService",
                 "envVar": "CWSKernelLinkEnvVar"
             },
             "KernelWeb": {
-                "port": 4122,
-                "proto": "TCP",
+                "port": 333333,
+                "proto": "UDP",
                 "dependency": "Weak",
                 "type": "BBService",
                 "envVar": "CWSKernelWebLinkEnvVar"

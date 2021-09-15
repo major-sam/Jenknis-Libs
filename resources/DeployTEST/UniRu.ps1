@@ -4,13 +4,16 @@ $targetDir = "C:\inetpub\$WebSiteName"
 $sourceDir = "$env:nugettemp\$WebSiteName"
 
 ## TODO!!!
-$file = Get-item -Path "C:\Users\vrebyachih\Desktop\UniRu.sql"
+$sourceFile = Get-item -Path "\\dev-comp49\share\UniRu.sql"
+$file = Get-item -Path ".\UniRu.sql"
 $oldIp = '172.16.1.217'
 $oldHostname = 'VM1APKTEST-P1'
 $IPAddress = (Get-NetIPAddress -InterfaceAlias Ethernet -AddressFamily IPv4).IPAddress.trim()
 $ProgressPreference = 'SilentlyContinue'
 $RuntimeVersion ='v4.0'
-$MssqlVersion = "MSSQL15"
+[reflection.assembly]::LoadWithPartialName("Microsoft.SqlServer.Smo") | out-null
+$srv = New-Object "Microsoft.SqlServer.Management.Smo.Server" "."
+$MssqlVersion = "MSSQL" + $srv.Version.major
 ### !!! TRAILING SLASHES !!!
 $release_bak_folder = "\\dev-comp49\share\DBs\"
 $MSSQLDataPath = "C:\Program Files\Microsoft SQL Server\$MssqlVersion.MSSQLSERVER\MSSQL\DATA\"
@@ -70,7 +73,7 @@ write-host "Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Excl
 Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg" 
 
 
-(Get-Content -Encoding UTF8 -LiteralPath $file.Fullname)|Foreach-Object {
+(Get-Content -Encoding UTF8 -LiteralPath $sourceFile.Fullname)|Foreach-Object {
     $_ -replace $oldIp,  $IPAddress `
         -replace $oldHostname, $env:COMPUTERNAME`
     } | Set-Content -Encoding UTF8 -LiteralPath $file.Fullname

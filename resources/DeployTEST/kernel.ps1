@@ -104,7 +104,7 @@ function XmlDocTransform($xml, $xdt){
     }
 
     #$scriptPath = (Get-Variable MyInvocation -Scope 1).Value.InvocationName | split-path -parent
-    Add-Type -LiteralPath "C:\temp\Microsoft.Web.XmlTransform.dll"
+    Add-Type -LiteralPath "\\dev-comp49\share\Microsoft.Web.XmlTransform.dll"
 
     $xmldoc = New-Object Microsoft.Web.XmlTransform.XmlTransformableDocument;
     $xmldoc.PreserveWhitespace = $true

@@ -1,10 +1,15 @@
 ## vars
 $sourceDir = "${env:nugettemp}\MessageService"
 $targetDir  = 'C:\Services'
-#TODO FIX
-$release_bak_folder = 'C:\temp\'
-$MssqlVersion = "MSSQL15"
+$release_bak_folder = '\\dev-comp49\share\'
+
+
+[reflection.assembly]::LoadWithPartialName("Microsoft.SqlServer.Smo") | out-null
+$srv = New-Object "Microsoft.SqlServer.Management.Smo.Server" "."
+$MssqlVersion = "MSSQL" + $srv.Version.major
 $MSSQLDataPath = "C:\Program Files\Microsoft SQL Server\$MssqlVersion.MSSQLSERVER\MSSQL\DATA\"
+
+
 
 
 $dbs = @(

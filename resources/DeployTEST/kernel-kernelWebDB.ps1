@@ -1,10 +1,11 @@
 #vars
 $ProgressPreference = 'SilentlyContinue'
-
-$MssqlVersion = "MSSQL15"
 ### !!! TRAILING SLASHES !!!
 $release_folder = "\\server\tcbuild$\Testers\_VM Update Instructions\27.08.2021 RELEASE"
 $release_bak_folder = "\\server\tcbuild$\Testers\_VM Update Instructions\27.08.2021 RELEASE\_Full DB Restoration\"
+[reflection.assembly]::LoadWithPartialName("Microsoft.SqlServer.Smo") | out-null
+$srv = New-Object "Microsoft.SqlServer.Management.Smo.Server" "."
+$MssqlVersion = "MSSQL" + $srv.Version.major
 $MSSQLDataPath = "C:\Program Files\Microsoft SQL Server\$MssqlVersion.MSSQLSERVER\MSSQL\DATA\"
 $queryTimeout = 720
 $excludeSqlCmds = "1.DBRestore.sql"

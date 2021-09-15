@@ -1,9 +1,9 @@
 def call(Map config = [:]){				
 // INTENDED FOR TESTS ONLY
 // INTENDED FOR TESTS ONLY
-	taglist = ['NWP-147','NWP-145','NWP-133','NWP-108','NWP-144','NWP-143']
-	Collections.shuffle(taglist)
-	testTag = taglist.first() + " " + taglist.last()
+//	taglist = ['NWP-147','NWP-145','NWP-133','NWP-108','NWP-144','NWP-143']
+//	Collections.shuffle(taglist)
+//	testTag = taglist.first() + " " + taglist.last()
 // INTENDED FOR TESTS ONLY
 // INTENDED FOR TESTS ONLY
         if (config.release){

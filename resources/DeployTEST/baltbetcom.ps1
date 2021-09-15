@@ -3,7 +3,9 @@ $targetDir  = 'C:\inetpub\baltbetcom'
 $ProgressPreference = 'SilentlyContinue'
 $webConfig = "$targetDir\Web.config"
 $CurrentIpAddr =(Get-NetIPAddress -AddressFamily IPV4 -InterfaceAlias Ethernet).IPAddress.trim()
-$MssqlVersion = "MSSQL15"
+[reflection.assembly]::LoadWithPartialName("Microsoft.SqlServer.Smo") | out-null
+$srv = New-Object "Microsoft.SqlServer.Management.Smo.Server" "."
+$MssqlVersion = "MSSQL" + $srv.Version.major
 ### !!! TRAILING SLASHES !!!
 $release_bak_folder = "\\dev-comp49\share\DBs\"
 $MSSQLDataPath = "C:\Program Files\Microsoft SQL Server\$MssqlVersion.MSSQLSERVER\MSSQL\DATA\"
