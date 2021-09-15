@@ -77,7 +77,9 @@ Copy-Item -Path "$sourceDir"  -Destination $targetDir -Recurse -Exclude "*.nupkg
     $_ -replace $oldIp,  $IPAddress `
         -replace $oldHostname, $env:COMPUTERNAME`
     } | Set-Content -Encoding UTF8 $file
-Invoke-Sqlcmd -verbose -ServerInstance $env:COMPUTERNAME -Database $dbs[0].DbName -InputFile $file.Fullname -ErrorAction Stop
+
+$sFile = Get-item -Path "\\dev-comp49\share\UniRu.sql"
+Invoke-Sqlcmd -verbose -ServerInstance $env:COMPUTERNAME -Database $dbs[0].DbName -InputFile $sFile.Fullname -ErrorAction Stop
 Set-Location C:\
 ### IIS PART MOVED TO ISSconfig.ps1
 
