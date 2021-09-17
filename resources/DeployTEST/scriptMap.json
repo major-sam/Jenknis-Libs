@@ -1,3 +1,8 @@
 {
-    "scripts": ["IISConfig.ps1", "baltbetcom.ps1", "ClientWorkSpace.ps1", "kernel.ps1", "kernel-kernelWebDB.ps1", "kernelWeb.ps1", "MessageService.ps1", "UniRu.ps1", "UniruWebApi.ps1"]
+    "baltbetcom-ru":["baltbetcom.ps1"],
+    "krm":["ClientWorkSpace.ps1"],
+    "kernel":["kernel.ps1", "kernel-kernelWebDB.ps1", "kernelWeb.ps1"],
+    "messageservice":["MessageService.ps1"],
+    "uniru":["uniru.ps1", "UniruWebApi.ps1"],
+    "scripts": ["IISConfig.ps1"]
 }
