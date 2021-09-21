@@ -11,13 +11,23 @@ def call(Map config = [:]) {
       // Optionally add 'else if' for other Unix OS  
       else {
          sh script: "set +o history"
-         sh script: "curl -u ${username}:${password} -o ${env.workspace}/temp.json ${config.branchListUrl}"
+         def response 
+         timeout(30){
+            waitUntil {
+                response =  sh script: "curl -u ${username}:${password} -o ${env.workspace}/temp.json ${config.branchListUrl}", returnStatus: true
+                return (response == 0)
+            }
+         }
+         if (response != 0 ){
+            build.result = 'ERROR'
+         }
+         sleep(2)
          def json = sh script: "cat ${env.workspace}/temp.json", returnStdout: true
          scriptMap = new JsonSlurperClassic().parseText(json)
          writeFile file: config.txtFile, text:scriptMap.values*.displayId.join('\r\n')
          def bCount = scriptMap['size']
          def dBranch = scriptMap.values.find{ map -> map.isDefault == true}.displayId
-         sh script "set -o history"
+         sh script: "set -o history"
          return [ branchCount:bCount, defaultBranch:dBranch]
       }
     }
