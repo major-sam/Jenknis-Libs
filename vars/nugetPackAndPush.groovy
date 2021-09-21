@@ -36,7 +36,7 @@ def call(Map config = [:]){
 		powershell ( encoding:"UTF8", script:"nuget pack")
 		if(( config.branch ==~ env.BRANCH_REGEX )||( config.branch in config.default_branches)){
 			powershell ( encoding:"UTF8", script:"nuget push *.nupkg -Source ${env.nugetRepo} -ApiKey ${env.NuggetApiKey}")
-			url = 'https://dev-comp49/packages/' +  config.buildname + '/' +  "1.0.${nugetVersion}"
+			url = env.nexusBrowse + env.nexusNugetHosted + config.buildname + '%2F' +  "1.0.${nugetVersion}"
 			currentBuild.description = currentBuild.description + "<br>${config.buildname}"+' <a href="' +url + '">link</a>  to artifact in nuget gallery'
 		}else{
 			currentBuild.description = currentBuild.description + "<br>BUILD FAILED"
