@@ -12,7 +12,6 @@ def call(Map config = [:]){
          sh script: "set +o history"
          sh script: "git clone --single-branch --branch ${config.branch} ${config.gitUrl} ${config.cloneFolder}"
          sh script: "set -o history"
-         return [ branchCount:bCount, defaultBranch:dBranch]
       }
     }
     else {
