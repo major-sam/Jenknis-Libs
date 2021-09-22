@@ -21,7 +21,11 @@ def call(Map config = [:]) {
          if (response != 0 ){
             build.result = 'ERROR'
          }
+<<<<<<< HEAD
          sleep(2)
+=======
+         sleep(5)
+>>>>>>> master
          def json = sh script: "cat ${env.workspace}/temp.json", returnStdout: true
          scriptMap = new JsonSlurperClassic().parseText(json)
          writeFile file: config.txtFile, text:scriptMap.values*.displayId.join('\r\n')
