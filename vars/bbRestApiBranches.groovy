@@ -28,7 +28,7 @@ def call(Map config = [:]) {
          def bCount = scriptMap['size']
          def dBranch = scriptMap.values.find{ map -> map.isDefault == true}.displayId
          sh script: "set -o history"
-         return [ branchCount:bCount, defaultBranch:dBranch]
+         return [ branchCount:bCount, defaultBranch:dBranch.sort()]
       }
     }
     else {
