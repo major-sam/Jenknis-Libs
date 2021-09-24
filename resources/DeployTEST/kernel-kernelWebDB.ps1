@@ -1,20 +1,20 @@
 #vars
 $ProgressPreference = 'SilentlyContinue'
 ### !!! TRAILING SLASHES !!!
-$release_folder = "\\server\tcbuild$\Testers\_VM Update Instructions\27.08.2021 RELEASE"
-$release_bak_folder = "\\server\tcbuild$\Testers\_VM Update Instructions\27.08.2021 RELEASE\_Full DB Restoration\"
+$release_bak_folder = "\\server\tcbuild$\Testers\DB\"
+$release_script_folder = "\\server\tcbuild$\Testers\_VM Update Instructions\27.08.2021 RELEASE\_Full DB Restoration\"
 [reflection.assembly]::LoadWithPartialName("Microsoft.SqlServer.Smo") | out-null
 $srv = New-Object "Microsoft.SqlServer.Management.Smo.Server" "."
 $MssqlVersion = "MSSQL" + $srv.Version.major
 $MSSQLDataPath = "C:\Program Files\Microsoft SQL Server\$MssqlVersion.MSSQLSERVER\MSSQL\DATA\"
 $queryTimeout = 720
 $excludeSqlCmds = "1.DBRestore.sql"
-$files = Get-ChildItem -path "$($release_bak_folder)\*" -Include "*.sql" -exclude $excludeSqlCmds | Sort-Object -Property Name
+$files = Get-ChildItem -path "$($release_script_folder)\*" -Include "*.sql" -exclude $excludeSqlCmds | Sort-Object -Property Name
 $dbname = 'BaltBetM'
 $dbs = @(
 	@{
 		DbName = "BaltBetM"
-		BackupFile = "BaltBetM.bak"
+		BackupFile = "BaltBetM.original.bak"
 		RelocateFiles = @(
 			@{
 				SourceName = "BaltBetM"
