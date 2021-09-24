@@ -24,11 +24,11 @@ def call(Map config = [:]) {
          sleep(2)
          def json = sh script: "cat ${env.workspace}/temp.json", returnStdout: true
          scriptMap = new JsonSlurperClassic().parseText(json)
-         writeFile file: config.txtFile, text:scriptMap.values*.displayId.join('\r\n')
+         writeFile file: config.txtFile, text:scriptMap.values*.displayId.sort().join('\r\n')
          def bCount = scriptMap['size']
          def dBranch = scriptMap.values.find{ map -> map.isDefault == true}.displayId
          sh script: "set -o history"
-         return [ branchCount:bCount, defaultBranch:dBranch.sort()]
+         return [ branchCount:bCount, defaultBranch:dBranch]
       }
     }
     else {
