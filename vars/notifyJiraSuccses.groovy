@@ -10,7 +10,7 @@ h1. {color:#00875A}BUILD ${config.buildName} SUCCSESFULL{color}
 h2. Jenkins build ${env.BUILD_NUMBER}
 [link |${env.BUILD_URL}]
 ----
-h2. Nuget artifact
+h2. Artifact link
 [link |${url}]
 """  
 }
