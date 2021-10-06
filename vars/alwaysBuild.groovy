@@ -9,5 +9,4 @@ def call(Map config = [:]){
 	dir("${workspace}@tmp") {
           deleteDir()
         }
-	chuckNorris ()
       }	
